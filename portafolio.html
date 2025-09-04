@@ -3,121 +3,694 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Francisco Javier Flores Morales | Portafolio</title>
+  <title>Francisco Javier Flores Morales | Tech Lead Salesforce & Android</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563eb',
+            secondary: '#0ea5e9',
+            accent: '#f59e0b',
+            dark: '#1e293b',
+            light: '#f8fafc'
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    html { scroll-behavior: smooth; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 50%, #6366f1 100%);
+    }
+    
+    .skill-bar {
+      transition: width 2s ease-in-out;
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .progress-ring {
+      transition: stroke-dashoffset 1.5s ease-in-out;
+    }
+    
+    .floating { 
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translate(0, 0px); }
+      50% { transform: translate(0, -15px); }
+      100% { transform: translate(0, 0px); }
+    }
+    
+    .theme-toggle {
+      transition: all 0.3s ease;
+    }
+    
+    .dark-mode {
+      background-color: #0f172a;
+      color: #f1f5f9;
+    }
+    
+    .dark-card {
+      background-color: #1e293b;
+      color: #f1f5f9;
+    }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="bg-light text-dark">
+  <!-- Theme Toggle -->
+  <div class="fixed top-24 right-4 z-50">
+    <button id="themeToggle" class="theme-toggle bg-white dark:bg-slate-800 p-3 rounded-full shadow-lg">
+      <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i>
+    </button>
+  </div>
+
   <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-50 animate__animated animate__fadeInDown">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">Francisco J. Flores</h1>
-      <nav class="space-x-6">
-        <a href="#about" class="hover:text-blue-600 transition">Sobre mí</a>
-        <a href="#experience" class="hover:text-blue-600 transition">Experiencia</a>
-        <a href="#tech" class="hover:text-blue-600 transition">Tech Stack</a>
-        <a href="#contact" class="hover:text-blue-600 transition">Contacto</a>
+  <header class="bg-white dark:bg-dark shadow-md sticky top-0 z-50 animate__animated animate__fadeInDown">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-white font-bold mr-3">FJ</div>
+        <h1 class="text-2xl font-bold text-primary dark:text-secondary">Francisco J. Flores</h1>
+      </div>
+      
+      <nav class="hidden md:flex space-x-8">
+        <a href="#about" class="hover:text-primary dark:hover:text-secondary transition font-medium">Sobre mí</a>
+        <a href="#experience" class="hover:text-primary dark:hover:text-secondary transition font-medium">Experiencia</a>
+        <a href="#projects" class="hover:text-primary dark:hover:text-secondary transition font-medium">Proyectos</a>
+        <a href="#skills" class="hover:text-primary dark:text-secondary transition font-medium">Habilidades</a>
+        <a href="#contact" class="hover:text-primary dark:hover:text-secondary transition font-medium">Contacto</a>
       </nav>
+      
+      <div class="md:hidden">
+        <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-dark px-6 py-4 shadow-lg">
+      <div class="flex flex-col space-y-4">
+        <a href="#about" class="hover:text-primary dark:hover:text-secondary transition font-medium">Sobre mí</a>
+        <a href="#experience" class="hover:text-primary dark:hover:text-secondary transition font-medium">Experiencia</a>
+        <a href="#projects" class="hover:text-primary dark:hover:text-secondary transition font-medium">Proyectos</a>
+        <a href="#skills" class="hover:text-primary dark:hover:text-secondary transition font-medium">Habilidades</a>
+        <a href="#contact" class="hover:text-primary dark:hover:text-secondary transition font-medium">Contacto</a>
+      </div>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-800 text-white text-center py-24 relative overflow-hidden">
-    <div class="animate__animated animate__fadeInUp">
-      <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Tech Lead – Salesforce & Android</h2>
-      <p class="text-lg md:text-xl mb-8">Transformando procesos con <span class="font-semibold">integraciones SAP</span> y <span class="font-semibold">soluciones móviles</span></p>
-    <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 mt-6">
-  <!-- LinkedIn -->
-  <a href="https://www.linkedin.com/in/francisco-f-4676924a/" target="_blank" rel="noopener noreferrer"
-     class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition transform hover:scale-105">
-    💼 LinkedIn
-  </a>
-
-  <!-- GitHub -->
-  <a href="https://github.com/FranciscoJFM" target="_blank" rel="noopener noreferrer"
-     class="bg-gray-900 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-800 transition transform hover:scale-105">
-    💻 GitHub
-  </a>
-
-  <!-- Contáctame -->
-  <a href="#contact"
-     class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-yellow-300 transition transform hover:scale-105">
-    📩 Contáctame
-  </a>
-</div>
+  <section class="gradient-bg text-white pt-32 pb-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="animate__animated animate__fadeInUp">
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Tech Lead – <span class="text-accent">Salesforce</span> & <span class="text-accent">Android</span></h2>
+          <p class="text-xl mb-8">Transformando procesos con <span class="font-semibold">integraciones SAP</span> y <span class="font-semibold">soluciones móviles</span> de alto impacto</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#contact" class="bg-accent text-dark px-8 py-4 rounded-full font-bold shadow-lg hover:bg-yellow-500 transition transform hover:scale-105 text-center">
+              Contrátame ahora
+            </a>
+            <a href="#projects" class="bg-white text-primary px-8 py-4 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105 text-center">
+              Ver proyectos
+            </a>
+          </div>
+        </div>
+        
+        <div class="animate__animated animate__fadeInRight floating hidden md:block">
+          <div class="relative">
+            <div class="absolute -inset-8 bg-white/20 rounded-full animate-pulse"></div>
+            <div class="absolute -inset-4 bg-white/10 rounded-full animate-pulse"></div>
+            <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Tech Lead" class="relative z-10 rounded-2xl shadow-2xl">
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- Fondo animado -->
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+    
+    <!-- Elementos decorativos de fondo -->
+    <div class="absolute bottom-0 left-0 w-full h-48 bg-white/10"></div>
+    <div class="absolute top-24 -left-20 w-72 h-72 bg-white/5 rounded-full"></div>
+    <div class="absolute bottom-20 -right-20 w-96 h-96 bg-white/5 rounded-full"></div>
   </section>
 
-  <!-- Sobre mí -->
-  <section id="about" class="max-w-4xl mx-auto px-6 py-16 animate__animated animate__fadeInLeft">
-    <h3 class="text-3xl font-bold mb-6 text-blue-600">👨‍💻 Sobre mí</h3>
-    <p class="text-lg leading-relaxed">
-      Soy <strong>Tech Lead con más de 9 años de experiencia</strong> en Salesforce, Android y Java.
-      Lidero integraciones complejas <strong>Salesforce–SAP</strong>, desarrollando módulos de facturación,
-      requisición y compras que optimizan procesos financieros. Apasionado por la automatización, la
-      experiencia del cliente y la creación de soluciones escalables.
-    </p>
-  </section>
-
-  <!-- Experiencia -->
-  <section id="experience" class="bg-white py-16">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-10 text-blue-600 animate__animated animate__fadeInRight">💼 Experiencia Destacada</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 animate__animated animate__zoomIn">
-          <h4 class="text-xl font-bold mb-2">Uassist – Tech Lead</h4>
-          <p class="text-sm text-gray-500">2025 – Actualidad</p>
-          <p class="mt-3">Integraciones Salesforce–SAP para facturación, compras y ciberseguridad en datos.</p>
+  <!-- Stats -->
+  <section class="bg-white dark:bg-dark py-16 shadow-inner">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="animate__animated animate__fadeInUp">
+          <div class="text-4xl font-bold text-primary dark:text-secondary mb-2">9+</div>
+          <div class="text-gray-600 dark:text-gray-300">Años de experiencia</div>
         </div>
-        <div class="bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 animate__animated animate__zoomIn animate__delay-1s">
-          <h4 class="text-xl font-bold mb-2">Minsait (BBVA)</h4>
-          <p class="text-sm text-gray-500">2023 – 2024</p>
-          <p class="mt-3">Sistema de Analytics y batchs de permisos en Salesforce → reducción de tiempos.</p>
+        <div class="animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="text-4xl font-bold text-primary dark:text-secondary mb-2">24+</div>
+          <div class="text-gray-600 dark:text-gray-300">Proyectos completados</div>
         </div>
-        <div class="bg-gray-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 animate__animated animate__zoomIn animate__delay-2s">
-          <h4 class="text-xl font-bold mb-2">Grupo Modelo</h4>
-          <p class="text-sm text-gray-500">2020 – 2021</p>
-          <p class="mt-3">App de vendedores con geolocalización, pedidos en ruta y liderazgo de equipos globales.</p>
+        <div class="animate__animated animate__fadeInUp animate__delay-2s">
+          <div class="text-4xl font-bold text-primary dark:text-secondary mb-2">15+</div>
+          <div class="text-gray-600 dark:text-gray-300">Clientes satisfechos</div>
+        </div>
+        <div class="animate__animated animate__fadeInUp animate__delay-3s">
+          <div class="text-4xl font-bold text-primary dark:text-secondary mb-2">5</div>
+          <div class="text-gray-600 dark:text-gray-300">Certificaciones</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Tech Stack -->
-  <section id="tech" class="max-w-6xl mx-auto px-6 py-16">
-    <h3 class="text-3xl font-bold mb-6 text-blue-600 animate__animated animate__fadeInUp">🛠 Tech Stack</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:scale-105">Salesforce (Apex, LWC, Aura)</div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:scale-105">Android (Java, SQLite, APIs REST)</div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:scale-105">Java Backend (Spring Boot)</div>
-      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition transform hover:scale-105">SAP Integraciones</div>
+  <!-- Sobre mí -->
+  <section id="about" class="max-w-7xl mx-auto px-6 py-24">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="animate__animated animate__fadeInLeft">
+        <h3 class="text-3xl font-bold mb-6 text-primary dark:text-secondary">👨‍💻 Sobre mí</h3>
+        <p class="text-lg leading-relaxed mb-6">
+          Soy <strong class="text-primary dark:text-secondary">Tech Lead con más de 9 años de experiencia</strong> en Salesforce, Android y Java.
+          Lidero integraciones complejas <strong>Salesforce–SAP</strong>, desarrollando módulos de facturación,
+          requisición y compras que optimizan procesos financieros.
+        </p>
+        <p class="text-lg leading-relaxed mb-8">
+          Apasionado por la automatización, la experiencia del cliente y la creación de soluciones escalables
+          que generan valor real para las empresas y sus usuarios finales.
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+          <div class="bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-300 px-4 py-2 rounded-full font-medium">Salesforce</div>
+          <div class="bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-300 px-4 py-2 rounded-full font-medium">SAP</div>
+          <div class="bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-300 px-4 py-2 rounded-full font-medium">Android</div>
+          <div class="bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-300 px-4 py-2 rounded-full font-medium">Java</div>
+        </div>
+      </div>
+      
+      <div class="animate__animated animate__fadeInRight relative">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-2xl shadow-md card-hover">
+            <div class="text-4xl text-primary dark:text-secondary mb-4">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h4 class="font-bold mb-2">Rápido despliegue</h4>
+            <p class="text-sm">Implementación ágil de soluciones con metodologías modernas</p>
+          </div>
+          <div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-2xl shadow-md card-hover mt-8">
+            <div class="text-4xl text-primary dark:text-secondary mb-4">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4 class="font-bold mb-2">Seguridad robusta</h4>
+            <p class="text-sm">Enfoque prioritario en ciberseguridad y protección de datos</p>
+          </div>
+          <div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-2xl shadow-md card-hover">
+            <div class="text-4xl text-primary dark:text-secondary mb-4">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4 class="font-bold mb-2">Escalabilidad</h4>
+            <p class="text-sm">Arquitecturas preparadas para crecimiento futuro</p>
+          </div>
+          <div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-2xl shadow-md card-hover mt-8">
+            <div class="text-4xl text-primary dark:text-secondary mb-4">
+              <i class="fas fa-sync-alt"></i>
+            </div>
+            <h4 class="font-bold mb-2">Integraciones</h4>
+            <p class="text-sm">Conexión eficiente entre diferentes sistemas y plataformas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiencia -->
+  <section id="experience" class="bg-gray-50 dark:bg-gray-900 py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-16 text-center text-primary dark:text-secondary">💼 Experiencia Profesional</h3>
+      
+      <div class="relative">
+        <!-- Línea de tiempo -->
+        <div class="absolute left-0 md:left-1/2 top-0 h-full w-1 bg-primary/20 dark:bg-secondary/20 transform -translate-x-1/2"></div>
+        
+        <!-- Elementos de experiencia -->
+        <div class="space-y-12">
+          <!-- Uassist -->
+          <div class="flex flex-col md:flex-row items-center relative">
+            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+              <h4 class="text-xl font-bold">Uassist – Tech Lead</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Feb 2025 – Actualidad</p>
+              <p class="mt-3">Integraciones Salesforce–SAP para facturación, compras y ciberseguridad en datos.</p>
+              <div class="mt-4 flex flex-wrap justify-end gap-2">
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Salesforce</span>
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">SAP</span>
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">APIs</span>
+              </div>
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 md:translate-x-0 w-4 h-4 rounded-full bg-primary dark:bg-secondary border-4 border-white dark:border-gray-900 shadow-md"></div>
+            <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+              <div class="bg-white dark:dark-card p-6 rounded-2xl shadow-md card-hover">
+                <h5 class="font-bold mb-2">Logros destacados:</h5>
+                <ul class="list-disc list-inside text-sm space-y-2">
+                  <li>Diseño de APIs robustas para integración continua</li>
+                  <li>Optimización de módulos de negocio en 40%</li>
+                  <li>Implementación de protocolos de ciberseguridad</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Minsait -->
+          <div class="flex flex-col md:flex-row items-center relative">
+            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 order-2 md:order-1">
+              <div class="bg-white dark:dark-card p-6 rounded-2xl shadow-md card-hover">
+                <h5 class="font-bold mb-2">Logros destacados:</h5>
+                <ul class="list-disc list-inside text-sm space-y-2">
+                  <li>Reducción de tiempos de asignación de permisos en 65%</li>
+                  <li>Implementación de eliminación masiva configurable de datos</li>
+                  <li>Desarrollo de analytics para sistema de cobranza</li>
+                </ul>
+              </div>
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 md:translate-x-0 w-4 h-4 rounded-full bg-primary dark:bg-secondary border-4 border-white dark:border-gray-900 shadow-md"></div>
+            <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0 order-1 md:order-2">
+              <h4 class="text-xl font-bold">Minsait (BBVA) – Salesforce Developer</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Abr 2023 – Ene 2024</p>
+              <p class="mt-3">Sistema de Analytics y batchs de permisos en Salesforce con reducción significativa de tiempos.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Salesforce</span>
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Analytics</span>
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">SOQL</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Grupo Modelo -->
+          <div class="flex flex-col md:flex-row items-center relative">
+            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+              <h4 class="text-xl font-bold">Grupo Modelo – Android Developer</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Jul 2020 – Jul 2021</p>
+              <p class="mt-3">App de vendedores con geolocalización, pedidos en ruta y sincronización con Salesforce.</p>
+              <div class="mt-4 flex flex-wrap justify-end gap-2">
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Android</span>
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Java</span>
+                <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Salesforce</span>
+              </div>
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 md:translate-x-0 w-4 h-4 rounded-full bg-primary dark:bg-secondary border-4 border-white dark:border-gray-900 shadow-md"></div>
+            <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+              <div class="bg-white dark:dark-card p-6 rounded-2xl shadow-md card-hover">
+                <h5 class="font-bold mb-2">Logros destacados:</h5>
+                <ul class="list-disc list-inside text-sm space-y-2">
+                  <li>Optimización de aplicación con reducción de costos operativos</li>
+                  <li>Reducción de tiempos de vendedores en 30%</li>
+                  <li>Implementación de geolocalización para seguimiento de rutas</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-16">
+        <a href="https://www.linkedin.com/in/francisco-f-4676924a/" target="_blank" class="inline-flex items-center text-primary dark:text-secondary font-bold hover:underline">
+          Ver experiencia completa en LinkedIn
+          <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="projects" class="py-24 bg-white dark:bg-dark">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-4 text-center text-primary dark:text-secondary">🚀 Proyectos Destacados</h3>
+      <p class="text-lg text-center text-gray-600 dark:text-gray-300 mb-16">Soluciones innovadoras que he desarrollado para clientes</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Proyecto 1 -->
+        <div class="bg-gray-50 dark:dark-card rounded-2xl overflow-hidden shadow-md card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Integración Salesforce-SAP" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h4 class="font-bold text-xl mb-2">Integración Salesforce-SAP</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Sistema unificado para procesos de facturación, requisición y compras.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Salesforce</span>
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">SAP</span>
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">REST API</span>
+            </div>
+            <a href="#" class="text-primary dark:text-secondary font-medium text-sm hover:underline flex items-center">
+              Ver detalles del proyecto
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Proyecto 2 -->
+        <div class="bg-gray-50 dark:dark-card rounded-2xl overflow-hidden shadow-md card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Portal de Pensiones Afore" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h4 class="font-bold text-xl mb-2">Portal de Pensiones Afore</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Plataforma web para gestión de pensiones con calculadoras integradas.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Java</span>
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">JavaScript</span>
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">HTML/CSS</span>
+            </div>
+            <a href="#" class="text-primary dark:text-secondary font-medium text-sm hover:underline flex items-center">
+              Ver detalles del proyecto
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Proyecto 3 -->
+        <div class="bg-gray-50 dark:dark-card rounded-2xl overflow-hidden shadow-md card-hover">
+          <div class="h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="App de Vendedores" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <h4 class="font-bold text-xl mb-2">App Móvil de Vendedores</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Aplicación Android para gestión de pedidos, rutas y geolocalización.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Android</span>
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Java</span>
+              <span class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 text-xs px-3 py-1 rounded-full">REST API</span>
+            </div>
+            <a href="#" class="text-primary dark:text-secondary font-medium text-sm hover:underline flex items-center">
+              Ver detalles del proyecto
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Habilidades -->
+  <section id="skills" class="py-24 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-4 text-center text-primary dark:text-secondary">🛠 Habilidades Técnicas</h3>
+      <p class="text-lg text-center text-gray-600 dark:text-gray-300 mb-16">Conocimientos y tecnologías que domino</p>
+      
+      <div class="grid md:grid-cols-2 gap-16">
+        <!-- Habilidades principales -->
+        <div>
+          <h4 class="text-xl font-bold mb-6">Principales tecnologías</h4>
+          
+          <div class="space-y-6">
+            <!-- Salesforce -->
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Salesforce (Apex, LWC, Aura)</span>
+                <span class="text-primary dark:text-secondary font-bold">95%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-primary dark:bg-secondary rounded-full skill-bar" style="width: 95%"></div>
+              </div>
+            </div>
+            
+            <!-- Android -->
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Android (Java, Kotlin)</span>
+                <span class="text-primary dark:text-secondary font-bold">90%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-primary dark:bg-secondary rounded-full skill-bar" style="width: 90%"></div>
+              </div>
+            </div>
+            
+            <!-- Java -->
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Java Backend</span>
+                <span class="text-primary dark:text-secondary font-bold">88%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-primary dark:bg-secondary rounded-full skill-bar" style="width: 88%"></div>
+              </div>
+            </div>
+            
+            <!-- SAP -->
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Integraciones SAP</span>
+                <span class="text-primary dark:text-secondary font-bold">85%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-primary dark:bg-secondary rounded-full skill-bar" style="width: 85%"></div>
+              </div>
+            </div>
+            
+            <!-- APIs -->
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">APIs (REST, SOAP)</span>
+                <span class="text-primary dark:text-secondary font-bold">92%</span>
+              </div>
+              <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-primary dark:bg-secondary rounded-full skill-bar" style="width: 92%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Otras habilidades -->
+        <div>
+          <h4 class="text-xl font-bold mb-6">Otras tecnologías</h4>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white dark:dark-card p-4 rounded-xl shadow-sm">
+              <div class="text-blue-500 text-2xl mb-2">
+                <i class="fab fa-js-square"></i>
+              </div>
+              <h5 class="font-medium">JavaScript</h5>
+            </div>
+            
+            <div class="bg-white dark:dark-card p-4 rounded-xl shadow-sm">
+              <div class="text-red-500 text-2xl mb-2">
+                <i class="fab fa-html5"></i>
+              </div>
+              <h5 class="font-medium">HTML/CSS</h5>
+            </div>
+            
+            <div class="bg-white dark:dark-card p-4 rounded-xl shadow-sm">
+              <div class="text-green-500 text-2xl mb-2">
+                <i class="fas fa-database"></i>
+              </div>
+              <h5 class="font-medium">SQL & NoSQL</h5>
+            </div>
+            
+            <div class="bg-white dark:dark-card p-4 rounded-xl shadow-sm">
+              <div class="text-purple-500 text-2xl mb-2">
+                <i class="fab fa-git-alt"></i>
+              </div>
+              <h5 class="font-medium">Git</h5>
+            </div>
+            
+            <div class="bg-white dark:dark-card p-4 rounded-xl shadow-sm">
+              <div class="text-yellow-500 text-2xl mb-2">
+                <i class="fas fa-server"></i>
+              </div>
+              <h5 class="font-medium">DevOps</h5>
+            </div>
+            
+            <div class="bg-white dark:dark-card p-4 rounded-xl shadow-sm">
+              <div class="text-indigo-500 text-2xl mb-2">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <h5 class="font-medium">Cloud</h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section id="contact" class="bg-gradient-to-r from-indigo-700 to-blue-800 text-white py-16 animate__animated animate__fadeInUp">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold mb-6">📩 Contacto</h3>
-      <p class="mb-6 text-lg">¿Quieres transformar tus procesos con soluciones escalables?</p>
-      <div class="flex justify-center gap-6">
-        <a href="mailto:ffloresm2023@gmail.com" class="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition transform hover:scale-105">Enviar Email</a>
-        <a href="tel:+525525682702" class="bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-yellow-300 transition transform hover:scale-105">Llamar 📱</a>
+  <section id="contact" class="gradient-bg text-white py-24">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-6">¿Listo para transformar tus procesos?</h3>
+      <p class="text-xl mb-12 max-w-3xl mx-auto">Contáctame para discutir cómo podemos trabajar juntos en tu próximo proyecto</p>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Email -->
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-md card-hover">
+          <div class="text-4xl mb-4">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Envíame un email</h4>
+          <p class="mb-4">Respuesta en menos de 24 horas</p>
+          <a href="mailto:ffloresm2023@gmail.com" class="inline-block bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition">ffloresm2023@gmail.com</a>
+        </div>
+        
+        <!-- LinkedIn -->
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-md card-hover">
+          <div class="text-4xl mb-4">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Conectemos en LinkedIn</h4>
+          <p class="mb-4">Mantengámonos en contacto</p>
+          <a href="https://www.linkedin.com/in/francisco-f-4676924a/" target="_blank" class="inline-block bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition">Visitar perfil</a>
+        </div>
+        
+        <!-- Llamada -->
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-md card-hover">
+          <div class="text-4xl mb-4">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Hablemos por teléfono</h4>
+          <p class="mb-4">Agendemos una reunión virtual</p>
+          <a href="tel:+525525682702" class="inline-block bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition">+52 5525682702</a>
+        </div>
       </div>
-      <p class="mt-6">
-        <a href="https://www.linkedin.com/in/francisco-f-4676924a/" target="_blank" class="underline hover:text-gray-300">LinkedIn</a> |
-        <a href="https://github.com/FranciscoJFM" target="_blank" class="underline hover:text-gray-300">GitHub</a>
-      </p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 text-center py-6 text-sm">
-    © 2025 Francisco Javier Flores Morales – Portafolio
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">Francisco J. Flores</h4>
+          <p class="mb-4">Tech Lead especializado en Salesforce, Android e integraciones SAP.</p>
+          <div class="flex space-x-4">
+            <a href="https://www.linkedin.com/in/francisco-f-4676924a/" target="_blank" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-linkedin-in text-xl"></i>
+            </a>
+            <a href="https://github.com/FranciscoJFM" target="_blank" class="text-gray-400 hover:text-white transition">
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="mailto:ffloresm2023@gmail.com" class="text-gray-400 hover:text-white transition">
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">Enlaces rápidos</h4>
+          <ul class="space-y-2">
+            <li><a href="#about" class="hover:text-white transition">Sobre mí</a></li>
+            <li><a href="#experience" class="hover:text-white transition">Experiencia</a></li>
+            <li><a href="#projects" class="hover:text-white transition">Proyectos</a></li>
+            <li><a href="#skills" class="hover:text-white transition">Habilidades</a></li>
+            <li><a href="#contact" class="hover:text-white transition">Contacto</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">Servicios</h4>
+          <ul class="space-y-2">
+            <li>Desarrollo Salesforce</li>
+            <li>Aplicaciones Android</li>
+            <li>Integraciones SAP</li>
+            <li>Consultoría técnica</li>
+            <li>Liderazgo de equipos</li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-white text-lg font-bold mb-4">Contacto</h4>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-3"></i>
+              <span>ffloresm2023@gmail.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone mt-1 mr-3"></i>
+              <span>+52 5525682702</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+              <span>Ciudad de México, México</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+        <p>© 2025 Francisco Javier Flores Morales. Todos los derechos reservados.</p>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    // Toggle mobile menu
+    document.getElementById('mobileMenuButton').addEventListener('click', function() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    });
+    
+    // Toggle dark mode
+    document.getElementById('themeToggle').addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+      
+      const icon = this.querySelector('i');
+      if (document.body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+    
+    // Animate skill bars on scroll
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-bar');
+      skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+          bar.style.width = width;
+        }, 300);
+      });
+    }
+    
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate__animated');
+          
+          if (entry.target.id === 'skills') {
+            animateSkillBars();
+          }
+          
+          if (entry.target.classList.contains('animate__fadeInUp')) {
+            entry.target.classList.add('animate__fadeInUp');
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
